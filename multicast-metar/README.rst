@@ -8,11 +8,10 @@ To run
 ======
 
 ::
+
 	$ go run server.go
 
-This will broadcast the current METAR over multicast to all local computers:
-
-::
+This will broadcast the current METAR over multicast to all local computers::
 
 	00:31:04.086000 IP (tos 0x0, ttl 1, id 9075, offset 0, flags [none], proto UDP (17), length 127)
     192.168.1.65.5522 > 224.0.0.1.5522: [udp sum ok] UDP, length 99
