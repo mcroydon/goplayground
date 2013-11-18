@@ -10,7 +10,7 @@ import (
 
 var (
 	ipv4mcastaddr = &net.UDPAddr{
-		IP:   net.ParseIP("224.0.0.251"),
+		IP:   net.ParseIP("224.0.0.1"),
 		Port: 5522,
 	}
 	metarUrl = "http://weather.noaa.gov/pub/data/observations/metar/stations/KLWC.TXT"
