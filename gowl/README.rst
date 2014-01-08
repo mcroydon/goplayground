@@ -9,6 +9,7 @@ Serving owls
 Here you go::
 
 	$ go run gowl.go
+	2014/01/08 13:02:27 Serving owls on :3400.
 
 Consuming owls
 ==============
