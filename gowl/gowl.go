@@ -28,7 +28,9 @@ func check(err error, message string) {
 
 func owl(conn net.Conn) {
 	defer conn.Close()
-	conn.Write([]byte(owls[rand.Intn(owlCount)] + "\n"))
+	var index = rand.Intn(owlCount)
+	log.Printf("Serving owl %v to %v", index, conn.RemoteAddr().String())
+	conn.Write([]byte(owls[index] + "\n"))
 }
 
 func main() {
