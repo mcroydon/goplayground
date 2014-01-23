@@ -17,6 +17,8 @@ and tribbles::
 Running
 -------
 
+Example::
+
     $ cargo_hold
     Is that a tribble?
     ...
