@@ -4,7 +4,7 @@ Gowl
 Sometimes you really need some owls served over TCP.
 
 Serving owls
-============
+------------
 
 Here you go::
 
@@ -12,7 +12,7 @@ Here you go::
 	2014/01/08 13:02:27 Serving owls on :3400.
 
 Consuming owls
-==============
+--------------
 
 Here you go::
 
