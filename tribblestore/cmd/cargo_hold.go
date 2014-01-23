@@ -37,5 +37,4 @@ func main() {
 		count(len(tribbles))
 	}
 
-
 }
