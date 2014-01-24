@@ -12,7 +12,7 @@ Installing
 If you don't already have a checkout of my goplayground, you can download just the cargo hold
 and tribbles::
 
-    $ go install github.com/mcroydon/goplayground
+    $ go get github.com/mcroydon/goplayground/tribblestore/cargo_hold
 
 Running
 -------
