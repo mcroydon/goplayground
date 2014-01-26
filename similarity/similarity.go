@@ -1,5 +1,9 @@
 package similarity
 
+import (
+	"sync"
+)
+
 // An item that has been rated.
 type Item struct {
 	Name  string
@@ -8,6 +12,7 @@ type Item struct {
 
 // Similarity is a similarity storage and retrieval engine.
 type Similarity struct {
+	sync.RWMutex
 	data map[string][]Item
 }
 
@@ -18,14 +23,18 @@ func NewSimilarity() *Similarity {
 
 // Add an Item to the engine with a key.
 func (sim *Similarity) Add(key string, item Item) {
+	sim.Lock()
 	sim.data[key] = append(sim.data[key], item)
+	sim.Unlock()
 }
 
 // Get all the keys in this Similarity.
 func (sim *Similarity) Keys() []string {
+	sim.RLock()
 	keys := make([]string, 0, len(sim.data))
-	for k, _ := range(sim.data) {
+	for k, _ := range sim.data {
 		keys = append(keys, k)
 	}
+	sim.RUnlock()
 	return keys
 }
