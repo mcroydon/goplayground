@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"io"
+	"math"
 	"sync"
 )
 
@@ -73,4 +74,23 @@ func (sim *Similarity) ReadJson(r io.Reader) error {
 		return err
 	}
 	return nil
+}
+
+// Returns the Euclidean distance of two keys in our Similarity engine.
+func (sim *Similarity) EuclideanSimilarity(key1 string, key2 string) float64 {
+	// Don't compute if either key is missing.
+	if sim.data[key1] == nil || sim.data[key2] == nil {
+		return -1
+	}
+	firstItems := sim.data[key1]
+	secondItems := sim.data[key2]
+	// Find common Items for the two keys
+	sum := 0.0
+	for _, item := range firstItems {
+		secondItem, found := secondItems[item.Name]
+		if found {
+			sum += math.Pow(item.Value-secondItem.Value, 2)
+		}
+	}
+	return 1 / (1 + math.Sqrt(sum))
 }
