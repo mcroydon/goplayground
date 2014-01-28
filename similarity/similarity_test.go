@@ -6,8 +6,8 @@ import (
 )
 
 var (
-	jsondata = []byte(`{"critic1":[{"Name":"In a World","Value":3.5},{"Name":"War Games","Value":4.5}],
-	"critic2":[{"Name":"In a World","Value":2},{"Name":"War Games","Value":3}]}`)
+	jsondata = []byte(`{"critic1":{"In a World":{"Name":"In a World","Value":3.5},"War Games":{"Name":"War Games","Value":4.5}},
+		"critic2":{"In a World":{"Name":"In a World","Value":2},"War Games":{"Name":"War Games","Value":3}}}`)
 )
 
 func populateSim() *Similarity {

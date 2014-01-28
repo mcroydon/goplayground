@@ -16,18 +16,23 @@ type Item struct {
 // Similarity is a similarity storage and retrieval engine.
 type Similarity struct {
 	mutex sync.RWMutex
-	data  map[string][]Item
+	data  map[string]map[string]Item
 }
 
 // Create a new Similarity engine.
 func NewSimilarity() *Similarity {
-	return &Similarity{data: make(map[string][]Item)}
+	return &Similarity{data: make(map[string]map[string]Item)}
 }
 
 // Add an Item to the engine with a key.
 func (sim *Similarity) Add(key string, item Item) {
 	sim.mutex.Lock()
-	sim.data[key] = append(sim.data[key], item)
+	m, ok := sim.data[key]
+	if !ok {
+		m = make(map[string]Item)
+	}
+	m[item.Name] = item
+	sim.data[key] = m
 	sim.mutex.Unlock()
 }
 
@@ -48,7 +53,10 @@ func (sim *Similarity) WriteJson(w io.Writer) error {
 	if err != nil {
 		return err
 	}
-	w.Write(b)
+	_, err = w.Write(b)
+	if err != nil {
+		return err
+	}
 	return nil
 }
 
