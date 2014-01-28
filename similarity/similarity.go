@@ -50,7 +50,9 @@ func (sim *Similarity) Keys() []string {
 
 // Dump the data backing a Similarity engine to a Writer.
 func (sim *Similarity) WriteJson(w io.Writer) error {
+	sim.mutex.RLock()
 	b, err := json.Marshal(sim.data)
+	sim.mutex.RUnlock()
 	if err != nil {
 		return err
 	}
@@ -65,7 +67,9 @@ func (sim *Similarity) WriteJson(w io.Writer) error {
 func (sim *Similarity) ReadJson(r io.Reader) error {
 	// TODO: Is it idomatic to return underlying errors such as those encountered by ReadFrom or Unmarshal?
 	b := new(bytes.Buffer)
+	sim.mutex.Lock()
 	_, err := b.ReadFrom(r)
+	sim.mutex.Unlock()
 	if err != nil {
 		return err
 	}
@@ -78,6 +82,7 @@ func (sim *Similarity) ReadJson(r io.Reader) error {
 
 // Returns the Euclidean distance of two keys in our Similarity engine.
 func (sim *Similarity) EuclideanDistance(key1 string, key2 string) float64 {
+	sim.mutex.RLock()
 	// Don't compute if either key is missing.
 	if sim.data[key1] == nil || sim.data[key2] == nil {
 		return -1
@@ -92,5 +97,6 @@ func (sim *Similarity) EuclideanDistance(key1 string, key2 string) float64 {
 			sum += math.Pow(item.Value-secondItem.Value, 2)
 		}
 	}
+	sim.mutex.RUnlock()
 	return 1 / (1 + math.Sqrt(sum))
 }
