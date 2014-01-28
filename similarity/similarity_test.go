@@ -50,7 +50,6 @@ func TestReadJson(t *testing.T) {
 	if len(keys) == 2 && keys[0] != "critic1" || keys[1] != "critic2" {
 		t.Errorf("Expected keys %v found keys %v.", expectedKeys, keys)
 	}
-
 }
 
 func TestWriteJson(t *testing.T) {

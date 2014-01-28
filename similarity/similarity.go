@@ -17,7 +17,7 @@ type Item struct {
 // The result of a similarity search. Name can be used to retrieve full information
 // from the store and Similarity is the similarity score.
 type Result struct {
-	Name string
+	Name       string
 	Similarity float64
 }
 
