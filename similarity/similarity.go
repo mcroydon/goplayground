@@ -14,6 +14,16 @@ type Item struct {
 	Value float64
 }
 
+// The result of a similarity search. Name can be used to retrieve full information
+// from the store and Similarity is the similarity score.
+type Result struct {
+	Name string
+	Similarity float64
+}
+
+// A function used to compare the similarity of two keys in the Similarity engine.
+type comparison func(key1 string, key2 string) (distance float64)
+
 // Similarity is a similarity storage and retrieval engine.
 type Similarity struct {
 	mutex sync.RWMutex
@@ -99,4 +109,33 @@ func (sim *Similarity) EuclideanDistance(key1 string, key2 string) float64 {
 		}
 	}
 	return 1 / (1 + math.Sqrt(sum))
+}
+
+// Find similar keys using Euclidean distance comparison.
+func (sim *Similarity) SimilarEuclidean(key string, limit int) []Result {
+	return sim.Similar(key, limit, sim.EuclideanDistance)
+}
+
+// Find similar keys using the provided distance comparison.
+func (sim *Similarity) Similar(key string, limit int, distance comparison) []Result {
+	results := make([]Result, 0)
+	sim.mutex.RLock()
+	defer sim.mutex.RUnlock()
+	for k, _ := range sim.data {
+		if k == key {
+			// Don't check ourselves.
+			continue
+		}
+		score := distance(key, k)
+		// TODO: replace -1 return value with an error in EuclideanDistance.
+		if score != -1 {
+			results = append(results, Result{k, score})
+		}
+	}
+	if len(results) > limit {
+		return results[:limit]
+	} else {
+		return results
+	}
+
 }
