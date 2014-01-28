@@ -77,7 +77,7 @@ func (sim *Similarity) ReadJson(r io.Reader) error {
 }
 
 // Returns the Euclidean distance of two keys in our Similarity engine.
-func (sim *Similarity) EuclideanSimilarity(key1 string, key2 string) float64 {
+func (sim *Similarity) EuclideanDistance(key1 string, key2 string) float64 {
 	// Don't compute if either key is missing.
 	if sim.data[key1] == nil || sim.data[key2] == nil {
 		return -1

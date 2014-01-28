@@ -67,7 +67,7 @@ func TestWriteJson(t *testing.T) {
 
 func TestSimilarity(t *testing.T) {
 	sim := populateSim()
-	score := sim.EuclideanSimilarity("critic1", "critic2")
+	score := sim.EuclideanDistance("critic1", "critic2")
 	expected := 0.32037724101704074
 	if score != expected {
 		t.Errorf("Found unexpected similarity %v, (expected %v).", score, expected)
