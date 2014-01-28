@@ -74,7 +74,7 @@ func TestSimilarity(t *testing.T) {
 	}
 	results := sim.SimilarEuclidean("critic1", 5)
 	if len(results) != 1 {
-		t.Errorf("Expected more results than %v.", len(results))
+		t.Errorf("Expected 1 result found %v.", len(results))
 	}
 	if results[0].Name != "critic2" && results[0].Similarity != expected {
 		t.Errorf("Found unexpected score %v for %v.", results[0].Similarity, results[0].Name)
