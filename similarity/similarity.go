@@ -48,6 +48,16 @@ func (sim *Similarity) Add(key string, item Item) {
 	sim.data[key] = m
 }
 
+func (sim *Similarity) Get(key string) []Item {
+	sim.mutex.RLock()
+	defer sim.mutex.RUnlock()
+	results := make([]Item, 0)
+	for _, item := range sim.data[key] {
+		results = append(results, item)
+	}
+	return results
+}
+
 // Get all the keys in this Similarity.
 func (sim *Similarity) Keys() []string {
 	sim.mutex.RLock()

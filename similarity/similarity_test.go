@@ -64,6 +64,17 @@ func TestWriteJson(t *testing.T) {
 	}
 }
 
+func TestGet(t *testing.T) {
+	sim := populateSim()
+	key := "critic1"
+	name := "In a World"
+	m := sim.Get(key)
+	value := 3.5
+	if m[0].Name != name && m[0].Value != value {
+		t.Errorf("Expected a rating of %v for %v %v.", value, name, key)
+	}
+}
+
 func TestSimilarity(t *testing.T) {
 	sim := populateSim()
 	score := sim.EuclideanDistance("critic1", "critic2")
