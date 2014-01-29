@@ -6,6 +6,7 @@ import (
 	"io"
 	"math"
 	"sync"
+	"sort"
 )
 
 // An item that has been rated.
@@ -132,6 +133,7 @@ func (sim *Similarity) Similar(key string, limit int, distance comparison) []Res
 			results = append(results, Result{k, score})
 		}
 	}
+	sort.Sort(bySimilarity(results))
 	if len(results) > limit {
 		return results[:limit]
 	} else {
@@ -139,3 +141,11 @@ func (sim *Similarity) Similar(key string, limit int, distance comparison) []Res
 	}
 
 }
+
+// byScore implements sort.Interface for []Result allowing us to sort results by score,
+// sorting higher scoring results ahead of lower scoring results.
+type bySimilarity []Result
+
+func (a bySimilarity) Len() int           { return len(a) }
+func (a bySimilarity) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
+func (a bySimilarity) Less(i, j int) bool { return a[i].Similarity > a[j].Similarity }
