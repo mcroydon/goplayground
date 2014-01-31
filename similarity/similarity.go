@@ -32,7 +32,7 @@ type Similarity struct {
 }
 
 // Create a new Similarity engine.
-func NewSimilarity() *Similarity {
+func New() *Similarity {
 	return &Similarity{data: make(map[string]map[string]Item)}
 }
 

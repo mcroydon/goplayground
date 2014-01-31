@@ -8,7 +8,7 @@ import (
 )
 
 func BenchmarkLoad(b *testing.B) {
-	sim := NewSimilarity()
+	sim := New()
 	for i := 0; i < b.N; i++ {
 		name := fmt.Sprintf("critic%v", i)
 		item := Item{name, rand.NormFloat64() * 5 + 3.5}
@@ -18,7 +18,7 @@ func BenchmarkLoad(b *testing.B) {
 
 func BenchmarkSimilarity(b *testing.B) {
 	rand.Seed(time.Now().UTC().UnixNano())
-	sim := NewSimilarity()
+	sim := New()
 	// Add a first user
 	for k := 0; k <= 10; k++ {
 		sim.Add("critic0", Item{fmt.Sprintf("item%v", k), 2.5})

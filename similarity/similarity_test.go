@@ -18,7 +18,7 @@ func populateSim() *Similarity {
 	rating3 := Item{"War Games", 4.5}
 	rating4 := Item{"War Games", 3.0}
 
-	sim := NewSimilarity()
+	sim := New()
 	sim.Add(critic1, rating1)
 	sim.Add(critic2, rating2)
 	sim.Add(critic1, rating3)
@@ -40,7 +40,7 @@ func TestCreate(t *testing.T) {
 }
 
 func TestReadJson(t *testing.T) {
-	sim := NewSimilarity()
+	sim := New()
 	err := sim.ReadJson(bytes.NewBuffer(jsondata))
 	if err != nil {
 		t.Errorf("Unexpected error: %v", err)
