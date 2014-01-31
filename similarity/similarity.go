@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"io"
 	"math"
-	"sync"
 	"sort"
+	"sync"
 )
 
 // An item that has been rated.
