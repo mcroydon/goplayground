@@ -70,7 +70,7 @@ func TestGet(t *testing.T) {
 	name := "In a World"
 	m := sim.Get(key)
 	value := 3.5
-	if m[0].Name != name && m[0].Value != value {
+	if m[name].Value != value {
 		t.Errorf("Expected a rating of %v for %v %v.", value, name, key)
 	}
 }
