@@ -89,4 +89,20 @@ func TestSimilarity(t *testing.T) {
 	if results[0].Name != "critic2" && results[0].Similarity != expected {
 		t.Errorf("Found unexpected score %v for %v.", results[0].Similarity, results[0].Name)
 	}
+	sim.Add("critic3", Item{"In a World", 3.0})
+	sim.Add("critic3", Item{"War Games", 5.0})
+	newresults := sim.SimilarEuclidean("critic1", 5)
+	for i := range newresults {
+		result := newresults[i]
+		t.Logf("%v scored %v", result.Name, result.Similarity)
+		for _, item := range sim.Get(result.Name) {
+			t.Logf("\t%v: %v", item.Name, item.Value)
+		}
+	}
+	if newresults[0].Name != "critic3" {
+		t.Errorf("Expected %v as first result, found %v.", "ciritc3", newresults[0].Name)
+	}
+	if newresults[0].Similarity != 0.585786437626905 {
+		t.Errorf("Expected similarity %v found %v.", 0.585786437626905, newresults[0].Similarity)
+	}
 }
