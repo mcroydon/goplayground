@@ -16,7 +16,7 @@ In order to run a demo, bring up two chat clients::
 
 
     # Terminal 1
-    $ go run serfsup.go -host=127.0.0.1:4444 -existing=127.0.0.1:4445 -username=matt
+    $ serfsup -host=127.0.0.1:4444 -existing=127.0.0.1:4445 -username=matt
     2014/02/03 23:15:27 Connecting to 127.0.0.1:4445
     2014/02/03 23:15:27 Member event: chat-127.0.0.1-4444 member-join
     Message> 2014/02/03 23:15:27 There are 1 clients connected.
