@@ -2,7 +2,7 @@ Serf's Up!
 ==========
 
 A very basic peer to peer chat server built on top of `Serf <http://www.serfdom.io>`_ and
-`Memberlist <https://github.com/hashicorp/memberlist>`.
+`Memberlist <https://github.com/hashicorp/memberlist>`_.
 
 Installation
 ============
