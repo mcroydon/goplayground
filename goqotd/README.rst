@@ -9,6 +9,7 @@ Installation
 ============
 
 Install via go install::
+
     $ go install github.com/mcroydon/goplayground/goqotd
 
 Running
