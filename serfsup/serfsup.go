@@ -107,6 +107,7 @@ func main() {
 		clear()
 		fmt.Printf("Connection error: %v\n", err)
 	}
+	clear()
 	fmt.Printf("There are %v clients connected.\n", clients)
 
 	// let's chat.  This is our main loop that takes a line of user input,
