@@ -21,7 +21,7 @@ Running
 
 You will need to run goqotd as a superuser using ``su``, ``sudo`` or similar::
 
-    $ goqotd
+    $ sudo goqotd
     2014/02/06 10:39:00 goqotd listening for connections on port 17.
 
 If you run goqotd as a regular user, you will likely receive an error like this::
