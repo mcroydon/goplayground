@@ -12,6 +12,11 @@ import (
 	"strconv"
 )
 
+func clear() {
+	// Use ANSI codes to clear the line and move the cursor to the left.
+	fmt.Printf("\033[2K\033[100D")
+}
+
 func main() {
 	// Command-line options used to configure our chat client.
 	username := flag.String("username", "peon", "Username to use for chatting.")
@@ -33,22 +38,20 @@ func main() {
 					if !ok {
 						log.Panic("Unable to convert to user event.")
 					}
-					log.Printf("<%v> %s", ue.Name, ue.Payload)
-					// TODO: move message prompt to the bottom of the screen.
-					fmt.Printf("Message> ")
-					// We're ignoring other events such as member join/leave.
+					clear()
+					fmt.Printf("<%v> %sMessage> ", ue.Name, ue.Payload)
 				case serf.MemberEvent:
 					me, ok := event.(serf.MemberEvent)
 					if !ok {
 						log.Panic("Unable to convert to member event.")
 					}
+					clear()
 					for member := range me.Members {
-						log.Printf("Member event: %v %v", me.Members[member].Name, me.Type.String())
-						fmt.Printf("Message> ")
+						fmt.Printf("Member event: %v %v\n", me.Members[member].Name, me.Type.String())
 					}
-				default:
-					log.Printf(event.EventType().String())
+					fmt.Printf("Message> ")
 				}
+				// We're ignoring other events such as member join/leave.
 			}
 		}
 	}()
@@ -96,19 +99,21 @@ func main() {
 	}
 
 	// Join the cluster using the other local port as our existing seed.
-	log.Printf("Connecting to %v", *otherhostname)
+	fmt.Printf("Connecting to %v", *otherhostname)
 	clients, err := serfclient.Join([]string{*otherhostname}, false)
 	if err != nil {
 		// If we're the first user we'll get a connection refused on the other host
 		// so log but don't panic.
-		log.Printf("Connection error: %v", err)
+		clear()
+		fmt.Printf("Connection error: %v\n", err)
 	}
-	log.Printf("There are %v clients connected.", clients)
+	fmt.Printf("There are %v clients connected.\n", clients)
 
 	// let's chat.  This is our main loop that takes a line of user input,
 	// sends it as a UserEvent, and waits for more input.
 	reader := bufio.NewReader(os.Stdin)
 	for {
+		clear()
 		fmt.Printf("Message> ")
 		line, err := reader.ReadString('\n')
 		if err != nil {

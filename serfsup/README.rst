@@ -16,27 +16,32 @@ In order to run a demo, bring up two chat clients::
 
 
     # Terminal 1
-    $ serfsup -host=127.0.0.1:4444 -existing=127.0.0.1:4445 -username=matt
-    2014/02/03 23:15:27 Connecting to 127.0.0.1:4445
-    2014/02/03 23:15:27 Member event: chat-127.0.0.1-4444 member-join
-    Message> 2014/02/03 23:15:27 There are 1 clients connected.
-    Message> 2014/02/03 23:15:27 Member event: chat-127.0.0.1-4445 member-join
+    $ serfsup -host=127.0.0.1:4444 -existing=127.0.0.1:4445 -username=joe
+    Member event: chat-127.0.0.1-4444 member-join
+    Connection error: dial tcp 127.0.0.1:4445: connection refused
+    There are 0 clients connected.
     Message>
 
     # Terminal 2
-    $ serfsup -host=127.0.0.1:4445 -existing=127.0.0.1:4444 -username=thatguy
-    2014/02/03 23:14:05 Connecting to 127.0.0.1:4444
-    2014/02/03 23:14:05 Member event: chat-127.0.0.1-4445 member-join
-    Message> 2014/02/03 23:14:05 There are 1 clients connected.
-    Message> 2014/02/03 23:14:05 Member event: chat-127.0.0.1-4444 member-join
-    Message>
+    $ serfsup -host=127.0.0.1:4445 -existing=127.0.0.1:4444 -username=mike
+    Member event: chat-127.0.0.1-4445 member-join
+    Member event: chat-127.0.0.1-4444 member-join
+    Message> There are 1 clients connected.
 
 
 Now when you type in Terminal 1 you should see the output in Terminal 2::
 
     # Terminal 1
-    Message> Why hello there!
-    Message> 2014/02/03 23:18:44 <matt> Why hello there!
+    Message> Hello, Mike!
+    <joe> Hello, Mike!
 
     # Terminal 2
-    Message> 2014/02/03 23:18:45 <matt> Why hello there!
+    <joe> Hello, Mike!
+
+You can then type a response back in Terminal 2::
+
+    Message> Hello, Joe!
+    <mike> Hello, Joe!
+
+    # Terminal 1
+    <mike> Hello, Joe!
