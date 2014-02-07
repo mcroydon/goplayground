@@ -1,8 +1,8 @@
-package similarity_test
+package similarity
 
 import (
-	"github.com/mcroydon/goplayground/similarity"
 	"fmt"
+	"github.com/mcroydon/goplayground/similarity"
 )
 
 func ExampleUse() {
