@@ -5,7 +5,7 @@ import (
 	"github.com/mcroydon/goplayground/similarity"
 )
 
-func ExampleUse() {
+func Example() {
 	// Create a similarity engine
 	sim := similarity.New()
 
