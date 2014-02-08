@@ -42,6 +42,11 @@ You can interact with goqotd using telnet::
     "In the immortal words of Jean Paul Sartre, 'Au revoir, gopher'."
     Connection closed by foreign host.
 
+To test goqotd via UDP, you can use netcat::
+
+    $ nc localhost 17
+    "In the immortal words of Jean Paul Sartre, 'Au revoir, gopher'."
+
 Extending
 =========
 

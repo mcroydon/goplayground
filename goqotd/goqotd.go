@@ -19,17 +19,47 @@ func qotd(conn net.Conn) {
 	}
 }
 
-func main() {
+func QotdTCP() {
 	listener, err := net.Listen("tcp", ":17")
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Println("goqotd listening for connections on port 17.")
 	for {
 		conn, err := listener.Accept()
 		if err != nil {
 			log.Printf("Error during accept: %v", err)
 		}
-		go qotd(conn)
+		qotd(conn)
+	}
+}
+
+func QotdUDP() {
+	addr, err := net.ResolveUDPAddr("udp", ":17")
+	if err != nil {
+		log.Fatal(err)
+	}
+	listener, err := net.ListenUDP("udp", addr)
+	if err != nil {
+		log.Fatal(err)
+	}
+	for {
+		b := make([]byte, 1)
+		_, addr, err = listener.ReadFromUDP(b)
+		if err != nil {
+			log.Printf("Error during accept: %v", err)
+		}
+		_, err = listener.WriteToUDP([]byte(quote), addr)
+		if err != nil {
+			log.Printf("Error during accept: %v", err)
+		}
+	}
+}
+
+func main() {
+	go QotdTCP()
+	go QotdUDP()
+	log.Println("goqotd listening for connections on port 17.")
+	select {
+
 	}
 }
