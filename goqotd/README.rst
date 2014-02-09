@@ -44,7 +44,7 @@ You can interact with goqotd using telnet::
 
 To test goqotd via UDP, you can use netcat::
 
-    $ nc localhost 17
+    $ nc -u localhost 17
     "In the immortal words of Jean Paul Sartre, 'Au revoir, gopher'."
 
 Extending
