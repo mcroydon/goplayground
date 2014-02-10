@@ -44,8 +44,13 @@ You can interact with goqotd using telnet::
 
 To test goqotd via UDP, you can use netcat::
 
-    $ nc -u localhost 17
+    $ echo anything | nc -u localhost 17
     "In the immortal words of Jean Paul Sartre, 'Au revoir, gopher'."
+
+Known issues
+============
+
+* The UDP server does not automatically disconnect after serving a quote.
 
 Extending
 =========
