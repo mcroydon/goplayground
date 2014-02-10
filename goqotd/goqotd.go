@@ -11,7 +11,7 @@ var (
 	quote = "\"In the immortal words of Jean Paul Sartre, 'Au revoir, gopher'.\"\n"
 )
 
-func qotd(conn net.Conn) {
+func handleTCP(conn net.Conn) {
 	defer conn.Close()
 	_, err := conn.Write([]byte(quote))
 	if err != nil {
@@ -29,7 +29,19 @@ func QotdTCP() {
 		if err != nil {
 			log.Printf("Error during accept: %v", err)
 		}
-		qotd(conn)
+		go handleTCP(conn)
+	}
+}
+
+func handleUDP(conn *net.UDPConn) {
+	b := make([]byte, 1)
+	_, addr, err := conn.ReadFromUDP(b)
+	if err != nil {
+		log.Printf("Error during accept: %v", err)
+	}
+	_, err = conn.WriteToUDP([]byte(quote), addr)
+	if err != nil {
+		log.Printf("Error during accept: %v", err)
 	}
 }
 
@@ -43,15 +55,7 @@ func QotdUDP() {
 		log.Fatal(err)
 	}
 	for {
-		b := make([]byte, 1)
-		_, addr, err = listener.ReadFromUDP(b)
-		if err != nil {
-			log.Printf("Error during accept: %v", err)
-		}
-		_, err = listener.WriteToUDP([]byte(quote), addr)
-		if err != nil {
-			log.Printf("Error during accept: %v", err)
-		}
+		handleUDP(listener)
 	}
 }
 
