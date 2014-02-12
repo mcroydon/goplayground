@@ -9,9 +9,8 @@ import (
 func Friday(t time.Time) bool {
 	if t.Weekday() == time.Friday {
 		return true
-	} else {
-		return false
 	}
+	return false
 }
 
 // NowFriday tells you whether or not it's Friday in your local time right now.
