@@ -5,11 +5,16 @@ import (
 	"time"
 )
 
-// Friday tells you whether or not it's Friday in your local time.
-func Friday() bool {
-	if time.Now().Weekday() == time.Friday {
+// Friday lets you know if it is Friday for a specific time.Time.
+func Friday(t time.Time) bool {
+	if t.Weekday() == time.Friday {
 		return true
 	} else {
 		return false
 	}
+}
+
+// NowFriday tells you whether or not it's Friday in your local time right now.
+func NowFriday() bool {
+	return Friday(time.Now())
 }

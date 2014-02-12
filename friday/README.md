@@ -11,9 +11,16 @@ Package friday answers the age-old question "is it Friday?" It cannot assist you
 
 ## func Friday
 ``` go
-func Friday() bool
+func Friday(t time.Time) bool
 ```
-Friday tells you whether or not it's Friday in your local time.
+Friday lets you know if it is Friday for a specific time.Time.
+
+
+## func NowFriday
+``` go
+func NowFriday() bool
+```
+NowFriday tells you whether or not it's Friday in your local time right now.
 
 
 
