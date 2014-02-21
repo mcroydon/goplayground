@@ -11,4 +11,5 @@ warrant a full repository on their own.
   over multicast.
 * serfsup: Peer to peer chat using Serf and Memberlist.
 * similarity: The beginnings of a simple similarity or recommendation engine.
+* timetoys: Playing with time and how fast go can go.
 * tribblestore: A silly example of trying to contain tribbles.
