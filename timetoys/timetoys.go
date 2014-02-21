@@ -18,7 +18,7 @@ func HowFast() {
 	// Periodically print stats to the console.
 	tick := time.NewTicker(time.Second)
 	go func() {
-		for t:= range tick.C {
+		for t := range tick.C {
 			fmt.Printf("%v processed %v current delta %v max delta %v\n", t.Format(time.StampNano), c, delta, maxDelta)
 		}
 	}()
@@ -32,7 +32,7 @@ func HowFast() {
 		// Add the second difference if needed
 		secondDelta := now.Second() - prevTime.Second()
 		if secondDelta != 0 {
-			newDelta = newDelta + secondDelta * 1000000000
+			newDelta = newDelta + secondDelta*1000000000
 		}
 
 		// Update statistics
