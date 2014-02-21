@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-// Loop through time.Now() as fast as possible, keeping track of the maximum delta in nanoseconds and periodically
+// HowFast oops through time.Now() as fast as possible, keeping track of the maximum delta in nanoseconds and periodically
 // printing statistics to stdout.
 func HowFast() {
 	c := 0
