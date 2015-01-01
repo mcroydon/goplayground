@@ -4,6 +4,7 @@ Matt's Go Playground
 This is a place for small toy programs and other experiments that don't
 warrant a full repository on their own.
 
+* aviation/convert: Basic aviation conversions.
 * friday: Is it Friday?
 * goqotd: An RFC 859 compliant QOTD server.
 * gowl: Serving ASCII owls over TCP faster than you should really be able to do such a thing.
