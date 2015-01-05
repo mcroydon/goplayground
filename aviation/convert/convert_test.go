@@ -17,4 +17,14 @@ func TestConvert(t *testing.T) {
 		t.Errorf("Expected NauticalToStatuteMiles(1) to be 0.87.", nm)
 	}
 
+	lbs := fmt.Sprintf("%.2f", GallonsOfGasToPounds(1))
+	if lbs != "6.00" {
+		t.Errorf("Expected GallonsOfGasToPounds(1) to be 6.00.", nm)
+	}
+
+	gallons := fmt.Sprintf("%.2f", PoundsOfGasToGallons(12))
+	if gallons != "2.00" {
+		t.Errorf("Expected PoundsOfGasToGallons(1) to be 2.00.", nm)
+	}
+
 }

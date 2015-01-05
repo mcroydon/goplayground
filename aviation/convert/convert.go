@@ -23,3 +23,16 @@ func StatuteToNauticalMiles(statute float64) float64 {
 func NauticalToStatuteMiles(nautical float64) float64 {
 	return nautical * statuteMileConversionFactor
 }
+
+const gasWeightInPounds = 6
+const jetAWeightInPounds = 6.8
+
+// Convert pounds of AvGas (100LL) gallons.
+func PoundsOfGasToGallons(pounds float64) float64 {
+	return pounds / gasWeightInPounds
+}
+
+// Convert gallons of AvGas (100LL) to pounds.
+func GallonsOfGasToPounds(gallons float64) float64 {
+	return gallons * gasWeightInPounds
+}
