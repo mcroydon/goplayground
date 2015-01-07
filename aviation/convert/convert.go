@@ -26,8 +26,10 @@ func NauticalToStatuteMiles(nautical float64) float64 {
 
 const gasWeightInPounds = 6
 const jetAWeightInPounds = 6.8
+const waterWeightInPounds = 8.35
+const oilWaterWeightInPounds = 7.5
 
-// Convert pounds of AvGas (100LL) gallons.
+// Convert pounds of AvGas (100LL) to gallons.
 func PoundsOfGasToGallons(pounds float64) float64 {
 	return pounds / gasWeightInPounds
 }
@@ -35,4 +37,34 @@ func PoundsOfGasToGallons(pounds float64) float64 {
 // Convert gallons of AvGas (100LL) to pounds.
 func GallonsOfGasToPounds(gallons float64) float64 {
 	return gallons * gasWeightInPounds
+}
+
+// Convert pounds of Jet-A to gallons.
+func PoundsOfJetAToGallons(pounds float64) float64 {
+	return pounds / jetAWeightInPounds
+}
+
+// Convert gallons of Jet-A to pounds.
+func GallonsOfJetAToPounds(gallons float64) float64 {
+	return gallons * jetAWeightInPounds
+}
+
+// Convert pounds of water to gallons.
+func PoundsOfWaterToGallons(pounds float64) float64 {
+	return pounds / waterWeightInPounds
+}
+
+// Convert gallons of water to pounds.
+func GallonsOfWaterToPounds(gallons float64) float64 {
+	return gallons * waterWeightInPounds
+}
+
+// Convert pounds of oil to gallons.
+func PoundsOfOilToGallons(pounds float64) float64 {
+	return pounds / oilWaterWeightInPounds
+}
+
+// Convert gallons of oil to pounds.
+func GallonsOfOilToPounds(gallons float64) float64 {
+	return gallons * oilWaterWeightInPounds
 }
