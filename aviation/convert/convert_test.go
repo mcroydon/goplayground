@@ -22,6 +22,11 @@ func TestConvert(t *testing.T) {
 		t.Errorf("Expected GallonsOfGasToPounds(1) to be 6.00.", lbs)
 	}
 
+	twolbs := fmt.Sprintf("%.2f", GallonsOfGasToPounds(2))
+	if twolbs != "12.00" {
+		t.Errorf("Expected GallonsOfGasToPounds(1) to be 12.00.", lbs)
+	}
+
 	gallons := fmt.Sprintf("%.2f", PoundsOfGasToGallons(12))
 	if gallons != "2.00" {
 		t.Errorf("Expected PoundsOfGasToGallons(1) to be 2.00.", gallons)
