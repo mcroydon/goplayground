@@ -13,7 +13,12 @@ func Example_usage() {
 	statute := NauticalToStatuteMiles(1)
 	fmt.Printf("%.2f\n", statute)
 
+	// Convert 1 gallon of gas (100LL) to pounds.
+	lbs := GallonsOfGasToPounds(1)
+	fmt.Printf("%.2f\n", lbs)
+
 	// Output:
 	// 1.15
 	// 0.87
+	// 6.00
 }
