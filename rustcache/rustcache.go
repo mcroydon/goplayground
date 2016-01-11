@@ -46,7 +46,7 @@ func imageHandler(w http.ResponseWriter, r *http.Request) {
 
 func dataHandler(w http.ResponseWriter, r *http.Request) {
 	last := r.URL.Query().Get("last")
-	query := "SELECT * FROM data"
+	query := "SELECT crc, entity, num, lastaccess FROM data"
 	if len(last) != 0 {
 		query += " where lastaccess > ?"
 	}
@@ -67,7 +67,6 @@ func dataHandler(w http.ResponseWriter, r *http.Request) {
 		Crc        int64
 		Num        int64
 		LastAccess int64
-		Data       []byte // TODO: Consider creating a separate data endpoint.
 	}
 
 	var dataResults []Data
@@ -77,10 +76,9 @@ func dataHandler(w http.ResponseWriter, r *http.Request) {
 		var entity int64
 		var num int64
 		var lastaccess int64
-		var data []byte
-		err = rows.Scan(&crc, &entity, &num, &lastaccess, &data)
+		err = rows.Scan(&crc, &entity, &num, &lastaccess)
 		checkErr(err)
-		d := Data{Entity: entity, Crc: crc, Num: num, LastAccess: lastaccess, Data: data}
+		d := Data{Entity: entity, Crc: crc, Num: num, LastAccess: lastaccess}
 		dataResults = append(dataResults, d)
 	}
 	w.Header().Set("Content-Type", "application/json")
