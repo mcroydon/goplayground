@@ -3,10 +3,11 @@ package main
 import (
 	"database/sql"
 	"encoding/json"
-	_ "github.com/mattn/go-sqlite3"
 	"log"
 	"net/http"
 	"os/user"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 func main() {
