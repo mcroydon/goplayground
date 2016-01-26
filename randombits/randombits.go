@@ -1,11 +1,11 @@
 package main
 
-import "github.com/salviati/go-qrand/qrand"
-import ui "github.com/gizak/termui"
 import "flag"
-
 import "log"
 import "fmt"
+
+import "github.com/salviati/go-qrand/qrand"
+import ui "github.com/gizak/termui"
 
 var (
 	user      = flag.String("u", "", "QRBG Username")
