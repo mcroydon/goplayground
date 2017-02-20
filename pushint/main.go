@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"io"
-	"net/http"
 	"log"
 	"math/rand"
+	"net/http"
 )
 
 // This handler will push a pseudo-random integer via /int/ if possible.
