@@ -14,7 +14,7 @@ You can run numberstation from source:
 
 ## Usage
 
-Numberstation takes two arguments but provides sane defaults:
+Numberstation takes three optional flags but provides sane defaults:
 
 	-ip string
 		IP to send UDP traffic to. (default "224.0.0.1")
