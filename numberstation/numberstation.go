@@ -9,7 +9,6 @@ import "math/rand"
 import "net"
 import "time"
 
-
 func getAddr(ip string, port uint) string {
 	return fmt.Sprintf("%v:%v", ip, port)
 }
